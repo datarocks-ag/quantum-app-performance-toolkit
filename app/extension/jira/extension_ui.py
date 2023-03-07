@@ -32,13 +32,27 @@ def app_specific_action(webdriver, datasets):
     #     app_specific_user_login(username='admin', password='admin')
     # measure()
 
+    # @print_timing("selenium_app_custom_action")
+    # def measure():
+    #     @print_timing("selenium_app_custom_action:view_issue")
+    #     def sub_measure():
+    #         page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
+    #         page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
+    #         page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))  # Wait for you app-specific UI element by ID selector
+    #     sub_measure()
+    # measure()
+
     @print_timing("selenium_app_custom_action")
     def measure():
         @print_timing("selenium_app_custom_action:view_issue")
         def sub_measure():
             page.go_to_url(f"{JIRA_SETTINGS.server_url}/browse/{issue_key}")
             page.wait_until_visible((By.ID, "summary-val"))  # Wait for summary field visible
-            page.wait_until_visible((By.ID, "ID_OF_YOUR_APP_SPECIFIC_UI_ELEMENT"))  # Wait for you app-specific UI element by ID selector
+            page.wait_until_visible((By.ID,
+                                     "estimation-panel-app-container"))  # Wait for you app-specific UI element by ID selector
+            page.wait_until_visible((By.ID, "summary-panel-app-container"))
+
         sub_measure()
+
     measure()
 
